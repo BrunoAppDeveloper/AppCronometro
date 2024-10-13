@@ -49,6 +49,9 @@ class MainActivity : AppCompatActivity() {
             } catch (e:NumberFormatException) {
                 Toast.makeText(this, "Digite algum número", Toast.LENGTH_SHORT).show()
             }
+                buttonStop.setOnClickListener{
+                    timer?.cancel()
+                }
         }
     }
 }
