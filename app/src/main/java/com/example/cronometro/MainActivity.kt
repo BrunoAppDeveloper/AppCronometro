@@ -1,9 +1,9 @@
 package com.example.cronometro
 
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -21,13 +21,18 @@ class MainActivity : AppCompatActivity() {
             insets
 
         }
-        //val editText: EditText = findViewById(R.id.edit_value)
+        val editText: EditText = findViewById(R.id.edit_value)
         val buttonStart: Button = findViewById(R.id.btn_start)
-        //val buttonStop: Button = findViewById(R.id.btn_stop)
-        //val result: TextView = findViewById(R.id.txt_result)
+        val buttonStop: Button = findViewById(R.id.btn_stop)
+        val result: TextView = findViewById(R.id.txt_result)
+
 
         buttonStart.setOnClickListener{
-            Toast.makeText(this, "Teste", Toast.LENGTH_SHORT).show()
+            try {
+                val number = editText.text.toString().toLong()
+            } catch (e:NumberFormatException) {
+                Toast.makeText(this, "Digite algum número", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }
