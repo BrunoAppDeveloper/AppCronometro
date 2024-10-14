@@ -1,5 +1,6 @@
 package com.example.cronometro
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.Button
@@ -10,6 +11,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import kotlin.text.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,10 +37,11 @@ class MainActivity : AppCompatActivity() {
             try {
                 val number = editText.text.toString().toLong()
 
-                var timer = object : CountDownTimer(number * 60 * 1000, 1000) {
+                object : CountDownTimer(number * 60 * 1000, 1000) {
+                    @SuppressLint("DefaultLocale")
                     override fun onTick(millisUntilFinished: Long) {
                         var seconds = millisUntilFinished / 1000
-                        var minutes = seconds / 60
+                        val minutes = seconds / 60
                         seconds = seconds % 60
                         result.text = String.format("%02d:%02d", minutes, seconds)
                     }
@@ -47,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             } catch (e:NumberFormatException) {
-                Toast.makeText(this, "Digite algum número", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Digite algum número!", Toast.LENGTH_SHORT).show()
             }
                 buttonStop.setOnClickListener{
                     timer?.cancel()
